@@ -1,8 +1,20 @@
-// Constants and API configuration
 const API_KEY = 'fe227ebfcdb18d17f4c4d67bde3e94d4';
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
-const searchCounts = new Map();
+const searchCounts = new Map(getFromLocalStorage('searchCounts') || []);
 const MAX_FAVORITES = 3;
+
+function saveToLocalStorage(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+}
+
+function getFromLocalStorage(key) {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+}
+
+function saveLastWeather(weatherData) {
+    saveToLocalStorage('lastWeather', weatherData);
+}
 
 // Weather emoji mappings
 const weatherEmojis = {
@@ -56,8 +68,6 @@ function updateWeatherDisplay(weatherData) {
     const mainWeather = weatherData.weather[0].main;
     const city = weatherData.name;
 
-    console.log('Updating display with:', { mainWeather, city }); // Debug log
-
     // Update weather icon
     weatherIcon.textContent = weatherEmojis[mainWeather] || '❓';
     
@@ -66,17 +76,49 @@ function updateWeatherDisplay(weatherData) {
     
     // Update city name
     weatherCity.textContent = city;
+
+    // Save to localStorage
+    saveLastWeather(weatherData);
 }
+
+async function loadLastWeather() {
+    const lastWeather = getFromLocalStorage('lastWeather');
+    if (lastWeather) {
+        updateWeatherDisplay(lastWeather);
+    }
+}
+
+window.addEventListener('load', () => {
+    // Load last weather
+    loadLastWeather();
+    
+    // Load and display favorites
+    const savedSearchCounts = getFromLocalStorage('searchCounts');
+    if (savedSearchCounts) {
+        searchCounts.clear();
+        savedSearchCounts.forEach(([city, count]) => {
+            searchCounts.set(city, count);
+        });
+        
+        // Trigger favorites update
+        if (searchCounts.size > 0) {
+            addToFavorites(Array.from(searchCounts.keys())[0]);
+        }
+    }
+});
 
 // Function to add city to favorites
 function addToFavorites(city) {
     // Update search count for the city
     searchCounts.set(city, (searchCounts.get(city) || 0) + 1);
     
+    // Save updated searchCounts to localStorage
+    saveToLocalStorage('searchCounts', Array.from(searchCounts.entries()));
+    
     // Convert Map to array and sort by count (descending)
     const sortedCities = Array.from(searchCounts.entries())
         .sort((a, b) => b[1] - a[1])
-        .slice(0, MAX_FAVORITES); // Keep only top 3
+        .slice(0, MAX_FAVORITES);
     
     // Clear current favorites list
     favouritesList.innerHTML = '';
@@ -87,7 +129,6 @@ function addToFavorites(city) {
         li.className = 'favourites__item';
         li.textContent = cityName;
         
-        // Add click event to search for this city again
         li.addEventListener('click', () => {
             searchInput.value = cityName;
             handleWeatherSearch(cityName);
@@ -115,7 +156,6 @@ function showError(message) {
 // Function to handle weather search
 async function handleWeatherSearch(city) {
     try {
-        console.log('Searching for city:', city); // Debug log
         const weatherData = await getWeatherData(city);
         updateWeatherDisplay(weatherData);
         addToFavorites(city);
