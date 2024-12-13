@@ -12,42 +12,36 @@
   </head>
   <body>
     <!-- Form Section HTML -->
-
-    <section class="formContainer">
-      <form>
-        <input id="formInput" type="text" placeholder="Search" />
-        <button id="searchButton" type="submit">
+    <section class="search">
+      <form class="search__form">
+        <input class="search__input" type="text" placeholder="Search" />
+        <button class="search__button" type="submit">
           <span class="material-icons">search</span>
         </button>
       </form>
-      <div id="addCity">
-        <button id="addCityButton" type="button">Add City</button>
+      <div class="search__add">
+        <button class="search__add-button" type="button">Add City</button>
       </div>
     </section>
 
     <!-- Weather Card Section HTML -->
-
-    <section class="weatherContainer">
-      <div id="weatherEmoji"><span>☀️</span></div>
-      <div id="weatherInfo">
-        <div id="weatherCondition">
+    <section class="weather">
+      <div class="weather__icon"><span>☀️</span></div>
+      <div class="weather__info">
+        <div class="weather__condition">
           <h2>Sunny</h2>
         </div>
-        <div id="cityName">
+        <div class="weather__city">
           <h3>Gothenburg</h3>
         </div>
       </div>
     </section>
 
-    <!-- Search History Card Section HTML -->
-
-    <section class="searchHistoryContainer">
-      <div id="searchHistory">
-        <h2>Search History</h2>
-        <ul id="searchHistoryList">
-          <li>Gothenburg</li>
-          <li>Stockholm</li>
-          <li>Malmö</li>
+    <!-- Favourites Section HTML -->
+    <section class="favourites">
+      <div class="favourites__container">
+        <span class="favourites__icon">🤍</span>
+        <ul class="favourites__list">
         </ul>
       </div>
     </section>
