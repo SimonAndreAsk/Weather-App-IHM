@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Form Section HTML -->
+
+    <section class="formContainer">
+      <form>
+        <input id="formInput" type="text" placeholder="Search" />
+        <button id="searchButton" type="submit">
+          <span class="material-icons">search</span>
+        </button>
+      </form>
+      <div id="addCity">
+        <button id="addCityButton" type="button">Add City</button>
+      </div>
+    </section>
+
+    <!-- Weather Card Section HTML -->
+
+    <section class="weatherContainer">
+      <div id="weatherEmoji"><span>☀️</span></div>
+      <div id="weatherInfo">
+        <div id="weatherCondition">
+          <h2>Sunny</h2>
+        </div>
+        <div id="cityName">
+          <h3>Gothenburg</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search History Card Section HTML -->
+
+    <section class="searchHistoryContainer">
+      <div id="searchHistory">
+        <h2>Search History</h2>
+        <ul id="searchHistoryList">
+          <li>Gothenburg</li>
+          <li>Stockholm</li>
+          <li>Malmö</li>
+        </ul>
+      </div>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
