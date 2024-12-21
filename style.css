@@ -12,7 +12,7 @@
     font-size: medium;
   }
   
-  /* Global Rules*/
+  /* Globala Regler*/
   body {
     height: 100vh;
     display: flex;
@@ -30,7 +30,7 @@
     transition: 0.3s;
   }
   
-  /* Search Block */
+  /* Sök blocket*/
   .search {
     display: flex;
     width: 400px;
@@ -91,8 +91,142 @@
   .search__add-button:hover {
     background-color: var(--button-hover);
   }
+
+  /* Modal(Popup) Stil */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-overlay);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid var(--glass-border);
+    margin: 15% auto;
+    padding: 62px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 4px;
+    color: white;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.close-button {
+    color: white;
+    font-size: 28px;
+    font-weight: medium;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #999;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 24px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+    color: white;
+}
+
+.form-group select {
+    appearance: none; /* Remove default arrow */
+    background-image: url('./imgs/down-arrow-svgrepo-com.svg'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 24px center; /* Position the custom arrow */
+    background-size: 16px; /* Size of the custom arrow */
+    color: white;
+}
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.select-selected {
+    background: var(--glass-bg);
+    padding: 24px 40px 24px 24px;
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.select-items {
+    position: absolute;
+    background: #999;
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    margin-top: 4px;
+}
+
+.select-items div {
+    padding: 16px 24px;
+    cursor: pointer;
+    color: white;
+}
+
+.select-items div:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.select-hide {
+    display: none;
+}
+
+.modal-submit {
+    width: 100%;
+    padding: 10px;
+    background: var(--glass-bg);
+    color: white;
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-submit:hover {
+    background-color: var(--button-hover);
+}
   
-  /* Weather Block */
+  /* Väder Blocket*/
   .weather {
     display: flex;
     flex-direction: column;
@@ -107,6 +241,14 @@
     border-radius: 4px;
     margin-top: 12px;
   }
+
+  .weather, .favourites {
+    display: none;
+}
+
+  .weather.visible, .favourites.visible {
+    display: flex;
+}
   
   .weather__icon span {
     font-size: 54px;
@@ -130,7 +272,7 @@
     text-align: left;
 }
   
-  /* Favourites Block */
+  /* Most Searched (Favoriter) Blocket */
   .favourites {
     display: flex;
     height: fit-content;

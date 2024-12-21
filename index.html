@@ -11,7 +11,7 @@
     />
   </head>
   <body>
-    <!-- Form Section HTML -->
+    <!-- Formulär Sektion-->
     <section class="search">
       <form class="search__form">
         <input class="search__input" type="text" placeholder="Search" />
@@ -24,23 +24,53 @@
       </div>
     </section>
 
-    <!-- Weather Card Section HTML -->
+    <!-- Modal(popup) Sektion -->
+<div class="modal" id="addCityModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Add Fantasy City</h2>
+            <span class="close-button">&times;</span>
+        </div>
+        <form id="fantasyCityForm">
+            <div class="form-group">
+                <input type="text" id="fantasyCityName" placeholder="Enter City Name" required>
+            </div>
+            <div class="form-group">
+                <div class="custom-select">
+                    <div class="select-selected">Select Weather</div>
+                    <div class="select-items select-hide">
+                        <div data-value="Clear">Sunny ☀️</div>
+                        <div data-value="Clouds">Cloudy ☁️</div>
+                        <div data-value="Rain">Rainy 🌧️</div>
+                        <div data-value="Drizzle">Drizzling 🌦️</div>
+                        <div data-value="Thunderstorm">Thunderstorm ⛈️</div>
+                        <div data-value="Snow">Snowing 🌨️</div>
+                        <div data-value="Mist">Misty 🌫️</div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="modal-submit">Add City</button>
+        </form>
+    </div>
+</div>
+
+    <!-- Vädervisning - Display Kortet -->
     <section class="weather">
-      <div class="weather__icon"><span>☀️</span></div>
+      <div class="weather__icon"><span></span></div>
       <div class="weather__info">
         <div class="weather__condition">
-          <h2>Sunny</h2>
+          <h2></h2>
         </div>
         <div class="weather__city">
-          <h3>Gothenburg</h3>
+          <h3></h3>
         </div>
       </div>
     </section>
 
-    <!-- Favourites Section HTML -->
+    <!-- Mest Sökta (Most Searched) Sektion -->
     <section class="favourites">
       <div class="favourites__container">
-        <span class="favourites__icon">🤍</span>
+        <p class="favourites__icon">Most Searched</p>
         <ul class="favourites__list">
         </ul>
       </div>
