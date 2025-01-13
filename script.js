@@ -265,3 +265,40 @@ fantasyCityForm.addEventListener('submit', (e) => {
     
     alert(`${cityName} has been added to your fantasy cities!`); // Visar ett framgångsmeddelande
 });
+
+// Funktion för att hantera den anpassade dropdown-menyn
+document.addEventListener('DOMContentLoaded', () => {
+    const customSelect = document.querySelector('.custom-select');
+    const selectSelected = customSelect.querySelector('.select-selected');
+    const selectItems = customSelect.querySelector('.select-items');
+
+    // Växla dropdown-menyn när det valda objektet klickas
+    selectSelected.addEventListener('click', () => {
+        selectItems.classList.toggle('select-hide'); // Visa/dölj dropdown-menyn
+        selectSelected.classList.toggle('active'); // Lägg till/ta bort aktiv klass
+    });
+
+    // Hantera val av ett objekt från dropdown-menyn
+    selectItems.addEventListener('click', (event) => {
+        if (event.target && event.target.matches('div[data-value]')) {
+            const selectedValue = event.target.getAttribute('data-value');
+            const selectedText = event.target.textContent;
+
+            // Uppdatera det valda värdet och texten
+            selectSelected.textContent = selectedText;
+            selectSelected.setAttribute('data-value', selectedValue);
+
+            // Dölj dropdown-menyn
+            selectItems.classList.add('select-hide');
+            selectSelected.classList.remove('active');
+        }
+    });
+
+    // Stäng dropdown-menyn om användaren klickar utanför den
+    window.addEventListener('click', (event) => {
+        if (!customSelect.contains(event.target)) {
+            selectItems.classList.add('select-hide');
+            selectSelected.classList.remove('active');
+        }
+    });
+});
